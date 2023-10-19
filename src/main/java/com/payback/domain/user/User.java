@@ -1,5 +1,6 @@
 package com.payback.domain.user;
 
+import com.payback.dtos.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class User {
     private Long id;
 
     private String nome;
+
     private String sobrenome;
 
     @Column(unique = true)
@@ -33,4 +35,14 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO userDTO){
+        this.nome = userDTO.nome();
+        this.sobrenome = userDTO.sobrenome();
+        this.cpf = userDTO.cpf();
+        this.email = userDTO.email();
+        this.senha = userDTO.senha();
+        this.saldo = userDTO.saldo();
+        this.userType = userDTO.userType();
+    }
 }
